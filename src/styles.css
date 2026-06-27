@@ -280,6 +280,7 @@ body {
   padding: 16px 18px;
   box-shadow: 3px 3px 0 var(--ink);
   margin-top: 24px;
+  white-space: pre-line;
 }
 .gift-link {
   display: block;
@@ -484,7 +485,8 @@ body {
   flex: 1;
   min-width: 0;
 }
-.reveal-card input {
+.reveal-card input,
+.reveal-card textarea {
   font-family: 'Gaegu', sans-serif;
   font-size: 1.05rem;
   border: 2.5px solid var(--ink);
@@ -493,9 +495,18 @@ body {
   background: #fffdf7;
   width: 100%;
 }
-.reveal-card input:focus {
+.reveal-card input:focus,
+.reveal-card textarea:focus {
   outline: none;
   border-color: var(--pink);
+}
+.reveal-card textarea {
+  resize: vertical;
+}
+.name-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .account-box {
   display: flex;
@@ -581,10 +592,18 @@ body {
   from { transform: translateY(0); }
   to { transform: translateY(-50%); }
 }
+.credits__item {
+  text-align: center;
+}
 .credits__name {
   font-family: var(--hand);
   font-size: 1.3rem;
   color: var(--paper);
+}
+.credits__msg {
+  font-family: 'Gaegu', sans-serif;
+  font-size: 0.95rem;
+  color: #c9bba2;
 }
 .credits--empty {
   height: auto;
@@ -619,6 +638,68 @@ body {
 }
 .admin h1 {
   font-family: var(--hand);
+}
+.admin h2 {
+  font-family: var(--hand);
+  margin: 0 0 6px;
+}
+.admin__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--hand);
+  margin: 16px 0;
+}
+.admin__field input {
+  font-family: 'Gaegu', sans-serif;
+  font-size: 1.05rem;
+  border: 2.5px solid var(--ink);
+  border-radius: 12px;
+  padding: 11px 13px;
+  background: #fff;
+}
+.admin__card {
+  background: rgba(255, 255, 255, 0.6);
+  border: 2.5px solid var(--ink);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.admin__pending {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.admin__pending li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.admin__pname {
+  font-family: var(--hand);
+  font-size: 1.1rem;
+}
+.admin__pmsg {
+  font-size: 0.9rem;
+  color: #8a7d6a;
+}
+.admin__pbtns {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.admin__pbtns .btn {
+  padding: 7px 10px;
+  font-size: 0.85rem;
 }
 .admin__form {
   display: flex;

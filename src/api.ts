@@ -19,8 +19,13 @@ export async function fetchStatus(): Promise<{ percent: number }> {
   return parse(await fetch('/api/status'))
 }
 
-// 후원자 이름 목록 (엔딩 크레딧용)
-export async function fetchSupporters(): Promise<{ names: string[] }> {
+export interface Supporter {
+  name: string
+  message: string | null
+}
+
+// 승인된 후원자 목록 (엔딩 크레딧용) — 이름 + 한마디
+export async function fetchSupporters(): Promise<{ supporters: Supporter[] }> {
   return parse(await fetch('/api/supporters'))
 }
 
@@ -35,13 +40,51 @@ export async function revealAccount(code: string): Promise<{ account: string }> 
   )
 }
 
-// 후원자 이름 등록 (비밀코드 필요)
-export async function addSupporter(code: string, name: string): Promise<{ ok: true }> {
+// 후원자 등록 (비밀코드 필요) — 이름 + 한마디. 관리자 승인 전까지는 비공개.
+export async function addSupporter(
+  code: string,
+  name: string,
+  message: string,
+): Promise<{ ok: true }> {
   return parse(
     await fetch('/api/supporters', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code, name }),
+      body: JSON.stringify({ code, name, message }),
+    }),
+  )
+}
+
+// ─── 관리자용 ───
+export interface PendingSupporter {
+  id: number
+  name: string
+  message: string | null
+  created_at: string
+}
+
+export async function adminListSupporters(
+  adminCode: string,
+): Promise<{ pending: PendingSupporter[] }> {
+  return parse(
+    await fetch('/api/admin/supporters', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ adminCode, action: 'list' }),
+    }),
+  )
+}
+
+export async function adminModerateSupporter(
+  adminCode: string,
+  id: number,
+  action: 'approve' | 'reject',
+): Promise<{ ok: true }> {
+  return parse(
+    await fetch('/api/admin/supporters', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ adminCode, action, id }),
     }),
   )
 }

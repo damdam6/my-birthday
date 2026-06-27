@@ -1,3 +1,5 @@
+import { copy } from '../config'
+
 interface GaugeBarProps {
   percent: number
 }
@@ -14,7 +16,8 @@ export function GaugeBar({ percent }: GaugeBarProps) {
         </div>
       </div>
       <div className="gauge__caption">
-        지금 이만큼 모였어요! <span className="gauge__hint">(자세한 금액은 비밀 🤫)</span>
+        {copy.gaugeCaption}
+        <span className="gauge__hint">{copy.gaugeHint}</span>
       </div>
     </div>
   )

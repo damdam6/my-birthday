@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { revealAccount, addSupporter } from '../api'
+import { copy } from '../config'
 
 interface AccountRevealProps {
   onSupporterAdded: () => void
 }
 
 // 1) 공용 비밀코드 입력 → 서버 검증 → 계좌번호 공개(+복사)
-// 2) 송금 후 이름 남기기 (크레딧 롤에 등록)
+// 2) 송금 후 이름 + 한마디 남기기 (관리자 승인 후 크레딧에 노출)
 export function AccountReveal({ onSupporterAdded }: AccountRevealProps) {
   const [code, setCode] = useState('')
   const [account, setAccount] = useState<string | null>(null)
@@ -15,6 +16,7 @@ export function AccountReveal({ onSupporterAdded }: AccountRevealProps) {
   const [copied, setCopied] = useState(false)
 
   const [name, setName] = useState('')
+  const [message, setMessage] = useState('')
   const [naming, setNaming] = useState(false)
   const [nameError, setNameError] = useState<string | null>(null)
   const [nameDone, setNameDone] = useState(false)
@@ -39,13 +41,11 @@ export function AccountReveal({ onSupporterAdded }: AccountRevealProps) {
 
   async function handleCopy() {
     if (!account) return
-    // 계좌 문자열에서 숫자/하이픈 위주의 계좌번호만 추출 시도, 실패 시 전체 복사
     const match = account.match(/[\d-]{6,}/)
     const text = match ? match[0] : account
     try {
       await navigator.clipboard.writeText(text)
     } catch {
-      // 일부 브라우저 폴백
       const ta = document.createElement('textarea')
       ta.value = text
       document.body.appendChild(ta)
@@ -66,9 +66,10 @@ export function AccountReveal({ onSupporterAdded }: AccountRevealProps) {
     }
     setNaming(true)
     try {
-      await addSupporter(code.trim(), name.trim())
+      await addSupporter(code.trim(), name.trim(), message.trim())
       setNameDone(true)
       setName('')
+      setMessage('')
       onSupporterAdded()
     } catch (err) {
       setNameError(err instanceof Error ? err.message : '오류가 발생했어요')
@@ -81,9 +82,9 @@ export function AccountReveal({ onSupporterAdded }: AccountRevealProps) {
     return (
       <form className="reveal-card" onSubmit={handleReveal}>
         <p className="reveal-card__lead">
-          🔒 후원 계좌는 <strong>공용 비밀코드</strong>를 입력해야 보여요.
+          🔒 {copy.accountLead}
           <br />
-          <small>(코드는 저에게 물어봐 주세요 😉)</small>
+          <small>{copy.accountHint}</small>
         </p>
         <div className="reveal-card__row">
           <input
@@ -103,11 +104,11 @@ export function AccountReveal({ onSupporterAdded }: AccountRevealProps) {
 
   return (
     <div className="reveal-card">
-      <p className="reveal-card__lead">💌 마음 후원 계좌</p>
+      <p className="reveal-card__lead">💌 {copy.accountRevealTitle}</p>
       <div className="account-box">
         <span className="account-box__text">{account}</span>
         <button className="btn btn--copy" onClick={handleCopy}>
-          {copied ? '복사됨 ✓' : '계좌 복사 📋'}
+          {copied ? '복사됨 ✓' : copy.accountCopyBtn}
         </button>
       </div>
 
@@ -115,19 +116,26 @@ export function AccountReveal({ onSupporterAdded }: AccountRevealProps) {
 
       {nameDone ? (
         <div className="name-done">
-          🙇 등록 완료! 하단 크레딧에서 이름을 확인해보세요.
+          🙇 등록 완료! 확인 후 노출돼요. (제가 검토하고 올립니다)
         </div>
       ) : (
-        <form className="reveal-card__row" onSubmit={handleName}>
+        <form className="name-form" onSubmit={handleName}>
           <input
             type="text"
             value={name}
             maxLength={20}
-            placeholder="이름/닉네임 남기기"
+            placeholder="이름 / 닉네임"
             onChange={(e) => setName(e.target.value)}
           />
+          <textarea
+            value={message}
+            maxLength={50}
+            rows={2}
+            placeholder="한마디 (선택) — 검토 후 올라가요"
+            onChange={(e) => setMessage(e.target.value)}
+          />
           <button className="btn btn--dark" type="submit" disabled={naming}>
-            {naming ? '등록 중…' : '이름 올리기'}
+            {naming ? '등록 중…' : '이름과 한마디 남기기'}
           </button>
         </form>
       )}
