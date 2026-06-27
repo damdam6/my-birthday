@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { config, copy } from './config'
 import { fetchStatus, fetchSupporters, type Supporter } from './api'
 import { Reveal } from './components/Reveal'
-import { Carousel } from './components/Carousel'
+import { GiftPhotos } from './components/GiftPhotos'
 import { GaugeBar } from './components/GaugeBar'
 import { AccountReveal } from './components/AccountReveal'
 import { CreditsRoll } from './components/CreditsRoll'
@@ -54,7 +54,6 @@ export default function App() {
           </h1>
           <p className="cover__yes">{copy.coverYes}</p>
         </div>
-        <div className="cover__doodle">🎉🥳⌨️</div>
         <div className="cover__dday">{copy.coverDday}</div>
         <a className="btn btn--primary cover__cta" href="#pledge">
           {copy.cta}
@@ -76,18 +75,18 @@ export default function App() {
               <span className="option__num">1</span>
               <div>
                 <b>{copy.option1}</b>
-                <div className="option__reply">➡️ {copy.option1Reply}</div>
+                <div className="option__reply">→ {copy.option1Reply}</div>
               </div>
             </div>
             <div className="option option--hot">
               <span className="option__num">2</span>
               <div>
                 <b>{copy.option2}</b>
-                <div className="option__reply">➡️ {copy.option2Reply}</div>
+                <div className="option__reply">→ {copy.option2Reply}</div>
               </div>
             </div>
           </div>
-          <div className="arrows">➡️➡️➡️➡️➡️➡️</div>
+          <div className="arrows">▼ ▼ ▼</div>
         </Reveal>
       </section>
 
@@ -103,7 +102,7 @@ export default function App() {
           <div className="gift-stage">
             <span className="burst burst--tl">{copy.burstTL}</span>
             <span className="burst burst--br">{copy.burstBR}</span>
-            <Carousel images={config.gift.images} alt={config.gift.title} />
+            <GiftPhotos images={config.gift.images} alt={config.gift.title} />
           </div>
         </Reveal>
         <Reveal>
@@ -115,7 +114,7 @@ export default function App() {
               target="_blank"
               rel="noreferrer"
             >
-              어떤 제품인지 구경하기 🔎
+              어떤 제품인지 구경하기
             </a>
           )}
           <p className="handwrite pledge-line">{copy.storyLine}</p>
@@ -137,10 +136,8 @@ export default function App() {
           <ul className="rewards">
             {config.rewards.map((r, idx) => (
               <li className="reward" key={idx}>
-                <span className="reward__emoji">{r.emoji}</span>
-                <span>
-                  {idx + 1}. {r.text}
-                </span>
+                <span className="reward__num">{idx + 1}</span>
+                <span>{r.text}</span>
               </li>
             ))}
           </ul>

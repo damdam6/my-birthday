@@ -66,7 +66,7 @@ export function Admin() {
 
   return (
     <main className="admin">
-      <h1>🔧 관리자</h1>
+      <h1>관리자</h1>
 
       <label className="admin__field">
         관리자 코드
@@ -80,7 +80,7 @@ export function Admin() {
 
       {/* 진행률 */}
       <section className="admin__card">
-        <h2>📊 모금 진행률</h2>
+        <h2>모금 진행률</h2>
         <form className="admin__form" onSubmit={saveProgress}>
           <label>
             진행률: <strong>{percent}%</strong>
@@ -104,7 +104,7 @@ export function Admin() {
 
       {/* 후원자 승인 */}
       <section className="admin__card">
-        <h2>🙇 후원자 승인</h2>
+        <h2>후원자 승인</h2>
         <p className="muted">승인해야 크레딧에 노출됩니다.</p>
         <button className="btn btn--ghost" onClick={loadPending} disabled={loadingP}>
           {loadingP ? '불러오는 중…' : '대기 목록 불러오기'}
@@ -119,10 +119,10 @@ export function Admin() {
               </div>
               <div className="admin__pbtns">
                 <button className="btn btn--copy" onClick={() => moderate(p.id, 'approve')}>
-                  승인 ✓
+                  승인
                 </button>
                 <button className="btn btn--ghost" onClick={() => moderate(p.id, 'reject')}>
-                  거절 ✕
+                  거절
                 </button>
               </div>
             </li>

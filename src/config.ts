@@ -16,18 +16,18 @@ export const config = {
     title: '인체 공학용 키보드',
     // 상품 상세 링크(선택). 비워두면 버튼이 숨겨집니다.
     link: 'https://naver.me/G5kta91w',
-    // 캐러셀에 들어갈 상품 이미지 (public/gift/ 안에 넣어두었습니다)
-    images: ['/gift/keyboard-1.png', '/gift/keyboard-2.png'],
+    // 상품 사진: [0]=메인(중요), [1]=보조(팜레스트 사진, 덜 중요)
+    images: ['/gift/keyboard-2.png', '/gift/keyboard-1.png'],
     // 왜 이 선물이 필요한지 (사연) — 줄바꿈은 \n 으로
     reason:
       '때는 지난주.. 결절종을 뽑으러 갔다가 코바늘만한 주사기로 쑤심당하다\n의사쌤 : 이건 굳어서 안 뽑혀요 ㅎㅎ',
   },
 
-  // 후원자 혜택(리워드) — 상품과 별개로, 상상해서 만든 혜택입니다 ✨
+  // 후원자 혜택(리워드) — 상품과 별개로, 상상해서 만든 혜택입니다
   rewards: [
-    { emoji: '⌨️', text: '인체공학 키보드와 함께하는 개발자 셋로그' },
-    { emoji: '💪', text: '건강하고 튼튼한 손목(나)' },
-    { emoji: '🍽️', text: '강남~광교 식사권(싯가)' },
+    { text: '인체공학 키보드와 함께하는 개발자 셋로그' },
+    { text: '건강하고 튼튼한 손목(나)' },
+    { text: '강남~광교 식사권(싯가)' },
   ],
 
   // 리워드 제공 안내 문구
@@ -37,12 +37,12 @@ export const config = {
 
 // 표지/인사 등 주요 문구 (개그 톤)
 export const copy = {
-  coverKicker: '💙 생일 기념 💙',
+  coverKicker: '생일 기념',
   coverTitle: ['(때늦은)', '생일펀딩'],
   coverYes: '- 네  /  - YES',
   coverDday: '생일날 제안 받았음. 후딱 만들어왔어요. 지났어도 이해좀.. 부탁합니다',
-  coverScroll: '스크롤해서 구경하기 ↓',
-  cta: '후원하러 가기 ➡️',
+  coverScroll: '스크롤해서 구경하기',
+  cta: '후원하러 가기',
 
   greetingHi: '때는 생일 당일.. 친구의 느닷없는 제안으로 시작된 펀딩 프로젝트',
   greetingThanks: '차마 맨입으로 요구할 수 없어서 뻔뻔히 들고 온 펀딩 사이트 시작합니다',
@@ -61,7 +61,7 @@ export const copy = {
   gaugeCaption: '이렇게나 모였습니다 (수동업뎃이라 부정확함)',
   gaugeHint: '어차피 성공합니다. 제 돈 보탤거니까요 ^-^',
 
-  rewardTitle: '♥ 후원자 혜택 ♥',
+  rewardTitle: '후원자 혜택',
   rewardSubtitle: '금액은 신경 안씁니다. 그저 감사한 마음뿐.',
 
   accountTitle: '감사한 분',
@@ -73,5 +73,5 @@ export const copy = {
   creditsTitle: '<후원자>',
   creditsSubtitle: '다들 감사합니다....',
 
-  footerThanks: '🙇 감사합니다 🙇',
+  footerThanks: '감사합니다',
 }

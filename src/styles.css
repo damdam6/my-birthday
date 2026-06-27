@@ -1,11 +1,12 @@
 :root {
-  --paper: #fbf3e2;
-  --grid: #e0c8a0;
-  --ink: #211d1a;
-  --pink: #ff5fa2;
-  --yellow: #ffd23f;
-  --green: #2bb673;
-  --blue: #4f86ff;
+  --paper: #ece0c2;
+  --grid: #d2bb90;
+  --ink: #2c2823;
+  /* 촌스러운 복고 팔레트: 벽돌빨강 + 머스타드 (잉크블랙 위에) */
+  --pink: #b8412a; /* 벽돌빨강 (기존 분홍 자리) */
+  --yellow: #c0982f; /* 머스타드 (기존 노랑 자리) */
+  --green: #b8412a; /* 색 수 줄이려고 빨강으로 통일 */
+  --blue: #2c2823; /* 잉크로 통일 */
   --maxw: 460px;
   --hand: 'Jua', 'Gaegu', sans-serif;
 }
@@ -229,7 +230,7 @@ body {
   box-shadow: 3px 3px 0 var(--ink);
 }
 .option--hot {
-  background: #fff7fb;
+  background: #f6ead2;
   border-color: var(--pink);
   box-shadow: 3px 3px 0 var(--pink);
 }
@@ -320,9 +321,8 @@ body {
   transform: rotate(10deg);
 }
 
-/* ───────── 캐러셀 ───────── */
-.carousel__frame {
-  position: relative;
+/* ───────── 선물 사진 (메인 1장 + 보조 1장) ───────── */
+.gift-photos__main {
   border: 3px solid var(--ink);
   border-radius: 14px;
   overflow: hidden;
@@ -330,59 +330,38 @@ body {
   box-shadow: 4px 4px 0 var(--ink);
   aspect-ratio: 1 / 1;
 }
-.carousel__frame img {
+.gift-photos__main img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   user-select: none;
 }
-.carousel__count {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  background: rgba(33, 29, 26, 0.82);
-  color: #fff;
-  font-family: var(--hand);
-  font-size: 0.85rem;
-  padding: 3px 12px;
-  border-radius: 999px;
+.gift-photos__sub {
+  width: 56%;
+  margin: 14px 0 0 auto;
+  transform: rotate(2deg);
 }
-.carousel__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 38px;
-  height: 38px;
+.gift-photos__subframe {
   border: 2.5px solid var(--ink);
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  font-size: 1.4rem;
-  line-height: 1;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  padding-bottom: 3px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 3px 3px 0 var(--ink);
+  aspect-ratio: 4 / 3;
 }
-.carousel__nav--prev { left: 8px; }
-.carousel__nav--next { right: 8px; }
-.carousel__dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
+.gift-photos__sub img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-.carousel__dot {
-  width: 11px;
-  height: 11px;
-  border: 2px solid var(--ink);
-  border-radius: 50%;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-}
-.carousel__dot.is-on {
-  background: var(--pink);
+.gift-photos__cap {
+  text-align: right;
+  font-family: 'Gaegu', sans-serif;
+  font-size: 0.85rem;
+  color: #8a7d6a;
+  margin-top: 4px;
 }
 
 /* ───────── 게이지 ───────── */
@@ -404,7 +383,7 @@ body {
 .gauge__fill {
   position: relative;
   height: 100%;
-  background: linear-gradient(90deg, var(--pink), var(--yellow));
+  background: var(--pink);
   border-radius: 999px;
   transition: width 1s cubic-bezier(0.2, 0.8, 0.2, 1);
   min-width: 18px;
@@ -449,8 +428,17 @@ body {
   box-shadow: 3px 3px 0 var(--ink);
   font-size: 1.05rem;
 }
-.reward__emoji {
-  font-size: 1.5rem;
+.reward__num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 50%;
+  font-family: var(--hand);
+  font-size: 0.95rem;
 }
 .reward-note {
   text-align: center;
@@ -542,7 +530,7 @@ body {
 .reveal-card__divider::after { right: 6%; }
 .name-done {
   text-align: center;
-  background: #f0fff7;
+  background: #f3ead4;
   border: 2.5px solid var(--green);
   border-radius: 12px;
   padding: 14px;
@@ -551,9 +539,9 @@ body {
 
 .form__error {
   margin-top: 10px;
-  background: #fff0f4;
+  background: #f6e7df;
   border: 2px solid var(--pink);
-  color: #d63384;
+  color: var(--pink);
   border-radius: 10px;
   padding: 9px 12px;
   font-size: 0.98rem;
@@ -733,7 +721,7 @@ body {
 }
 .admin__bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--pink), var(--yellow));
+  background: var(--pink);
   transition: width 0.2s;
 }
 .admin__msg {

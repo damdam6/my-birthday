@@ -11,9 +11,7 @@ export function GaugeBar({ percent }: GaugeBarProps) {
   return (
     <div className="gauge" aria-label="모금 진행 막대">
       <div className="gauge__track">
-        <div className="gauge__fill" style={{ width: `${Math.max(p, 3)}%` }}>
-          <span className="gauge__runner">🎂</span>
-        </div>
+        <div className="gauge__fill" style={{ width: `${Math.max(p, 3)}%` }} />
       </div>
       <div className="gauge__caption">
         {copy.gaugeCaption}

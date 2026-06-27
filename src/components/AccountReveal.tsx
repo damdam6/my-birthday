@@ -82,7 +82,7 @@ export function AccountReveal({ onSupporterAdded }: AccountRevealProps) {
     return (
       <form className="reveal-card" onSubmit={handleReveal}>
         <p className="reveal-card__lead">
-          🔒 {copy.accountLead}
+          {copy.accountLead}
           <br />
           <small>{copy.accountHint}</small>
         </p>
@@ -104,7 +104,7 @@ export function AccountReveal({ onSupporterAdded }: AccountRevealProps) {
 
   return (
     <div className="reveal-card">
-      <p className="reveal-card__lead">💌 {copy.accountRevealTitle}</p>
+      <p className="reveal-card__lead">{copy.accountRevealTitle}</p>
       <div className="account-box">
         <span className="account-box__text">{account}</span>
         <button className="btn btn--copy" onClick={handleCopy}>
@@ -116,7 +116,7 @@ export function AccountReveal({ onSupporterAdded }: AccountRevealProps) {
 
       {nameDone ? (
         <div className="name-done">
-          🙇 등록 완료! 확인 후 노출돼요. (제가 검토하고 올립니다)
+          등록 완료! 확인 후 노출돼요. (제가 검토하고 올립니다)
         </div>
       ) : (
         <form className="name-form" onSubmit={handleName}>
