@@ -3,6 +3,7 @@ import { config, copy } from './config'
 import { fetchStatus, fetchSupporters, type Supporter } from './api'
 import { Reveal } from './components/Reveal'
 import { GiftPhotos } from './components/GiftPhotos'
+import { PersonSpeech } from './components/PersonSpeech'
 import { GaugeBar } from './components/GaugeBar'
 import { AccountReveal } from './components/AccountReveal'
 import { CreditsRoll } from './components/CreditsRoll'
@@ -107,6 +108,10 @@ export default function App() {
         </Reveal>
         <Reveal>
           <p className="section__text reason">{config.gift.reason}</p>
+          <PersonSpeech
+            label={config.gift.doctor.label}
+            line={config.gift.doctor.line}
+          />
           {config.gift.link && (
             <a
               className="btn btn--ghost gift-link"
