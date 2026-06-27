@@ -1,3 +1,14 @@
-# 이 파일을 .dev.vars 로 복사한 뒤 실제 Neon 연결 문자열을 채우세요.
+# 이 파일을 .dev.vars 로 복사한 뒤 실제 값을 채우세요.
 # .dev.vars 는 .gitignore 에 의해 커밋되지 않습니다.
+
+# Neon(또는 다른 Postgres) 연결 문자열
 DATABASE_URL="postgresql://user:password@ep-xxxx.region.aws.neon.tech/dbname?sslmode=require"
+
+# 후원자에게 공유할 공용 비밀코드 (이 코드를 입력해야 계좌가 보이고 이름 등록 가능)
+SUPPORTER_CODE="생일축하"
+
+# 관리자 코드 (#admin 화면에서 모금 진행률을 갱신할 때 사용)
+ADMIN_CODE="my-secret-admin"
+
+# 공개될 계좌 문자열 (코드가 맞을 때만 노출됨)
+ACCOUNT_INFO="카카오뱅크 3333-00-0000000 홍길동"

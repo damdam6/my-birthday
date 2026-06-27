@@ -2,6 +2,9 @@ name = "my-birthday-funding"
 pages_build_output_dir = "dist"
 compatibility_date = "2024-12-01"
 
-# 로컬 개발 시에는 .dev.vars 파일에 DATABASE_URL 을 넣으세요.
-# 배포 환경의 DATABASE_URL 은 Cloudflare 대시보드 또는 아래 명령으로 설정합니다.
+# 로컬 개발 시에는 .dev.vars 파일에 비밀값을 넣으세요. (.dev.vars.example 참고)
+# 배포 환경 시크릿은 Cloudflare 대시보드 또는 아래 명령으로 설정합니다.
 #   npx wrangler pages secret put DATABASE_URL
+#   npx wrangler pages secret put SUPPORTER_CODE
+#   npx wrangler pages secret put ADMIN_CODE
+#   npx wrangler pages secret put ACCOUNT_INFO
