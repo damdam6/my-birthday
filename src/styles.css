@@ -1,12 +1,12 @@
 :root {
-  --paper: #ece0c2;
-  --grid: #d2bb90;
-  --ink: #2c2823;
-  /* 촌스러운 복고 팔레트: 벽돌빨강 + 머스타드 (잉크블랙 위에) */
-  --pink: #b8412a; /* 벽돌빨강 (기존 분홍 자리) */
-  --yellow: #c0982f; /* 머스타드 (기존 노랑 자리) */
-  --green: #b8412a; /* 색 수 줄이려고 빨강으로 통일 */
-  --blue: #2c2823; /* 잉크로 통일 */
+  --paper: #ffffff;
+  --ink: #111111;
+  /* 알록달록 플랫 컬러 (MS페인트 크레용 느낌) */
+  --red: #e5392c;
+  --blue: #2f6bd8;
+  --yellow: #ffcf1a;
+  --green: #34a24a;
+  --pink: #ff5fa2; /* 거의 안 씀 (호환용) */
   --maxw: 460px;
   --hand: 'Jua', 'Gaegu', sans-serif;
 }
@@ -22,66 +22,88 @@ body {
   margin: 0;
   color: var(--ink);
   font-family: 'Gaegu', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-  font-size: 19px;
-  line-height: 1.6;
-  background-color: var(--paper);
-  /* 모눈종이(그래프 종이) 배경 */
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 26px 26px;
+  font-size: 20px;
+  line-height: 1.55;
+  background: var(--paper);
 }
 
 .page {
   max-width: var(--maxw);
   margin: 0 auto;
   overflow-x: hidden;
+  background: var(--paper);
 }
 .muted {
-  color: #8a7d6a;
+  color: #6b6b6b;
 }
 .handwrite {
   font-family: 'Gaegu', sans-serif;
 }
 .hl {
-  color: var(--pink);
+  color: var(--red);
 }
-/* 형광펜 강조 */
 .hl-mark {
-  background: linear-gradient(transparent 55%, var(--yellow) 55%);
-  padding: 0 4px;
+  background: var(--yellow);
+  padding: 0 6px;
+  box-decoration-break: clone;
 }
 
-/* ───────── 버튼 (손그림 스티커) ───────── */
+/* ── 마우스로 그린 듯한 삐뚤삐뚤 외곽선 (왜곡 필터) ── */
+.btn,
+.speech,
+.option,
+.reward,
+.reveal-card,
+.account-box,
+.gift-photos__main,
+.gift-photos__subframe,
+.gauge__track,
+.burst,
+.cover__kicker,
+.cover__dday,
+.name-done,
+.form__error,
+.admin__card,
+.admin__pending li,
+.option__num,
+.reward__num {
+  filter: url(#wobble);
+}
+.btn--primary,
+.option--hot,
+.reward:nth-child(even),
+.burst--br,
+.gift-photos__subframe {
+  filter: url(#wobble2);
+}
+
+/* ───────── 버튼 ───────── */
 .btn {
   display: inline-block;
   font-family: var(--hand);
-  font-size: 1.1rem;
-  border: 2.5px solid var(--ink);
+  font-size: 1.15rem;
+  border: 4px solid var(--ink);
   background: #fff;
   color: var(--ink);
   padding: 12px 22px;
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  border-radius: 230px 18px 240px 18px / 18px 240px 18px 230px;
-  box-shadow: 3px 3px 0 var(--ink);
-  transition: transform 0.1s, box-shadow 0.1s;
+  border-radius: 4px;
 }
 .btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0 var(--ink);
+  transform: translate(1px, 1px);
 }
 .btn:disabled {
   opacity: 0.55;
 }
 .btn--primary {
-  background: var(--pink);
+  background: var(--red);
   color: #fff;
 }
 .btn--dark {
   background: var(--ink);
-  color: var(--paper);
+  color: #fff;
 }
 .btn--ghost {
   background: #fff;
@@ -96,25 +118,24 @@ body {
 /* ───────── 표지 ───────── */
 .cover {
   text-align: center;
-  padding: 52px 22px 44px;
+  padding: 48px 22px 40px;
 }
 .cover__kicker {
   display: inline-block;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--yellow);
+  color: var(--ink);
+  border: 3px solid var(--ink);
   font-family: var(--hand);
-  padding: 6px 16px;
-  transform: rotate(-2.5deg);
-  border-radius: 6px;
+  padding: 5px 16px;
+  transform: rotate(-2deg);
   margin-bottom: 22px;
 }
 .speech {
   position: relative;
   background: #fff;
-  border: 3px solid var(--ink);
-  border-radius: 28px 28px 28px 6px;
+  border: 4px solid var(--ink);
+  border-radius: 8px;
   padding: 20px 22px;
-  box-shadow: 4px 4px 0 var(--ink);
 }
 .speech::after {
   content: '';
@@ -124,51 +145,42 @@ body {
   width: 22px;
   height: 22px;
   background: #fff;
-  border-right: 3px solid var(--ink);
-  border-bottom: 3px solid var(--ink);
-  transform: rotate(20deg) skew(-8deg);
+  border-right: 4px solid var(--ink);
+  border-bottom: 4px solid var(--ink);
+  transform: rotate(20deg);
 }
 .speech--big h1 {
   font-family: var(--hand);
-  font-size: 2.3rem;
-  line-height: 1.2;
+  font-size: 2.4rem;
+  line-height: 1.15;
   margin: 0;
-  color: var(--pink);
-  -webkit-text-stroke: 0.6px var(--ink);
+  color: var(--ink);
 }
 .cover__yes {
   font-family: var(--hand);
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   margin: 8px 0 0;
-  color: var(--blue);
-}
-.cover__doodle {
-  font-size: 2.6rem;
-  margin: 30px 0 18px;
+  color: var(--red);
 }
 .cover__dday {
   display: inline-block;
-  background: var(--yellow);
-  border: 2.5px solid var(--ink);
-  border-radius: 999px;
-  padding: 7px 18px;
+  background: var(--blue);
+  color: #fff;
+  border: 3px solid var(--ink);
+  padding: 8px 16px;
   font-family: var(--hand);
-  box-shadow: 2px 2px 0 var(--ink);
-  margin-bottom: 24px;
-}
-.cover__dday strong {
-  color: var(--pink);
-  font-size: 1.25rem;
+  margin: 26px 0 24px;
+  transform: rotate(-1deg);
 }
 .cover__cta {
   display: block;
   max-width: 280px;
   margin: 0 auto;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
 }
 .cover__scroll {
-  margin-top: 26px;
-  color: #8a7d6a;
+  margin-top: 24px;
+  color: #777;
   font-family: var(--hand);
   animation: bob 1.6s ease-in-out infinite;
 }
@@ -179,95 +191,92 @@ body {
 
 /* ───────── 섹션 ───────── */
 .section {
-  padding: 44px 22px;
+  padding: 42px 22px;
 }
 .section--paper {
-  background: rgba(255, 255, 255, 0.45);
-  border-top: 2.5px dashed var(--ink);
-  border-bottom: 2.5px dashed var(--ink);
+  border-top: 4px solid var(--ink);
+  border-bottom: 4px solid var(--ink);
 }
 .section__title {
   font-family: var(--hand);
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   text-align: center;
-  margin: 0 0 6px;
-  color: var(--pink);
-  -webkit-text-stroke: 0.5px var(--ink);
+  margin: 0 0 8px;
+  color: var(--red);
 }
 .section__text {
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   margin: 0 0 12px;
+}
+.ask {
+  text-align: center;
 }
 .thanks {
   font-size: 1.5rem;
   text-align: center;
   margin: 22px 0 16px;
-  color: var(--pink);
+  color: var(--blue);
 }
 
-/* 인사 - 옵션 박스 */
+/* 인사 옵션 */
 .speech__hi {
   margin: 0;
   font-size: 1.2rem;
 }
-.speech__hi strong {
-  color: var(--pink);
-}
 .options {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
   margin: 22px 0 14px;
 }
 .option {
   display: flex;
   gap: 12px;
   align-items: flex-start;
-  background: #fff;
-  border: 2.5px solid var(--ink);
-  border-radius: 16px;
+  background: var(--yellow);
+  border: 4px solid var(--ink);
+  border-radius: 6px;
   padding: 14px 16px;
-  box-shadow: 3px 3px 0 var(--ink);
 }
 .option--hot {
-  background: #f6ead2;
-  border-color: var(--pink);
-  box-shadow: 3px 3px 0 var(--pink);
+  background: var(--blue);
+  color: #fff;
 }
 .option__num {
   flex-shrink: 0;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   display: grid;
   place-items: center;
   background: var(--ink);
-  color: var(--paper);
+  color: #fff;
   border-radius: 50%;
   font-family: var(--hand);
 }
-.option--hot .option__num {
-  background: var(--pink);
+.option--hot .option__reply {
+  color: #fff;
 }
 .option__reply {
-  color: var(--pink);
   margin-top: 4px;
+  color: var(--red);
 }
 .arrows {
   text-align: center;
-  letter-spacing: 2px;
-  opacity: 0.8;
+  font-size: 1.4rem;
+  letter-spacing: 6px;
+  color: var(--ink);
 }
 
 /* ───────── 선물 소개 ───────── */
 .intro-line {
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   margin: 0 0 6px;
 }
 .gift-title {
   text-align: center;
   font-family: var(--hand);
-  font-size: 1.9rem;
+  font-size: 2rem;
   margin: 0 0 22px;
 }
 .gift-stage {
@@ -276,11 +285,10 @@ body {
 }
 .reason {
   background: #fff;
-  border: 2.5px solid var(--ink);
-  border-radius: 16px;
+  border: 4px solid var(--ink);
+  border-radius: 6px;
   padding: 16px 18px;
-  box-shadow: 3px 3px 0 var(--ink);
-  margin-top: 24px;
+  margin-top: 26px;
   white-space: pre-line;
 }
 .gift-link {
@@ -292,7 +300,6 @@ body {
   text-align: center;
   font-size: 1.25rem;
   margin: 22px 6px 0;
-  color: var(--ink);
 }
 
 /* 만화 버스트 배지 */
@@ -303,31 +310,28 @@ body {
   font-size: 1.05rem;
   color: var(--ink);
   background: var(--yellow);
-  border: 2.5px solid var(--ink);
-  padding: 8px 12px;
-  border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
-  box-shadow: 2px 2px 0 var(--ink);
+  border: 3px solid var(--ink);
+  padding: 7px 12px;
 }
 .burst--tl {
-  top: -14px;
-  left: -6px;
-  transform: rotate(-12deg);
+  top: -16px;
+  left: -4px;
+  transform: rotate(-9deg);
 }
 .burst--br {
-  bottom: -14px;
-  right: -6px;
-  background: var(--pink);
+  bottom: -16px;
+  right: -4px;
+  background: var(--red);
   color: #fff;
-  transform: rotate(10deg);
+  transform: rotate(7deg);
 }
 
-/* ───────── 선물 사진 (메인 1장 + 보조 1장) ───────── */
+/* ───────── 선물 사진 ───────── */
 .gift-photos__main {
-  border: 3px solid var(--ink);
-  border-radius: 14px;
+  border: 4px solid var(--ink);
+  border-radius: 6px;
   overflow: hidden;
   background: #fff;
-  box-shadow: 4px 4px 0 var(--ink);
   aspect-ratio: 1 / 1;
 }
 .gift-photos__main img {
@@ -338,16 +342,15 @@ body {
   user-select: none;
 }
 .gift-photos__sub {
-  width: 56%;
-  margin: 14px 0 0 auto;
-  transform: rotate(2deg);
+  width: 54%;
+  margin: 16px 0 0 auto;
+  transform: rotate(2.5deg);
 }
 .gift-photos__subframe {
-  border: 2.5px solid var(--ink);
-  border-radius: 12px;
+  border: 4px solid var(--ink);
+  border-radius: 6px;
   overflow: hidden;
   background: #fff;
-  box-shadow: 3px 3px 0 var(--ink);
   aspect-ratio: 4 / 3;
 }
 .gift-photos__sub img {
@@ -359,41 +362,25 @@ body {
 .gift-photos__cap {
   text-align: right;
   font-family: 'Gaegu', sans-serif;
-  font-size: 0.85rem;
-  color: #8a7d6a;
+  font-size: 0.9rem;
+  color: #777;
   margin-top: 4px;
 }
 
 /* ───────── 게이지 ───────── */
 .gauge__track {
   position: relative;
-  height: 30px;
-  border: 3px solid var(--ink);
-  border-radius: 999px;
-  background: repeating-linear-gradient(
-    45deg,
-    #fff,
-    #fff 8px,
-    #f6ecd6 8px,
-    #f6ecd6 16px
-  );
-  box-shadow: 3px 3px 0 var(--ink);
+  height: 32px;
+  border: 4px solid var(--ink);
+  border-radius: 4px;
+  background: #fff;
   overflow: hidden;
 }
 .gauge__fill {
-  position: relative;
   height: 100%;
-  background: var(--pink);
-  border-radius: 999px;
+  background: var(--red);
   transition: width 1s cubic-bezier(0.2, 0.8, 0.2, 1);
   min-width: 18px;
-}
-.gauge__runner {
-  position: absolute;
-  right: -6px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.4rem;
 }
 .gauge__caption {
   text-align: center;
@@ -405,7 +392,7 @@ body {
   display: block;
   font-family: 'Gaegu', sans-serif;
   font-size: 0.95rem;
-  color: #8a7d6a;
+  color: #777;
 }
 
 /* ───────── 리워드 ───────── */
@@ -415,47 +402,51 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 .reward {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #fff;
-  border: 2.5px solid var(--ink);
-  border-radius: 14px;
+  background: var(--yellow);
+  border: 4px solid var(--ink);
+  border-radius: 6px;
   padding: 13px 16px;
-  box-shadow: 3px 3px 0 var(--ink);
-  font-size: 1.05rem;
+  font-size: 1.06rem;
+}
+.reward:nth-child(2) {
+  background: var(--green);
+  color: #fff;
+}
+.reward:nth-child(3) {
+  background: var(--blue);
+  color: #fff;
 }
 .reward__num {
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   display: grid;
   place-items: center;
   background: var(--ink);
-  color: var(--paper);
+  color: #fff;
   border-radius: 50%;
   font-family: var(--hand);
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 .reward-note {
   text-align: center;
   margin-top: 18px;
-  color: #8a7d6a;
+  color: #777;
   font-size: 0.95rem;
-  text-decoration: underline wavy var(--pink);
-  text-underline-offset: 4px;
 }
 
-/* ───────── 계좌 공개 ───────── */
+/* ───────── 계좌 ───────── */
 .reveal-card {
   background: #fff;
-  border: 3px solid var(--ink);
-  border-radius: 18px;
+  border: 4px solid var(--ink);
+  border-radius: 6px;
   padding: 20px;
-  box-shadow: 4px 4px 0 var(--ink);
   margin-top: 16px;
 }
 .reveal-card__lead {
@@ -463,7 +454,7 @@ body {
   font-size: 1.15rem;
 }
 .reveal-card__lead small {
-  color: #8a7d6a;
+  color: #777;
 }
 .reveal-card__row {
   display: flex;
@@ -477,16 +468,16 @@ body {
 .reveal-card textarea {
   font-family: 'Gaegu', sans-serif;
   font-size: 1.05rem;
-  border: 2.5px solid var(--ink);
-  border-radius: 12px;
+  border: 3px solid var(--ink);
+  border-radius: 4px;
   padding: 11px 13px;
-  background: #fffdf7;
+  background: #fff;
   width: 100%;
 }
 .reveal-card input:focus,
 .reveal-card textarea:focus {
   outline: none;
-  border-color: var(--pink);
+  border-color: var(--red);
 }
 .reveal-card textarea {
   resize: vertical;
@@ -501,9 +492,10 @@ body {
   align-items: center;
   gap: 10px;
   justify-content: space-between;
-  background: var(--yellow);
-  border: 2.5px dashed var(--ink);
-  border-radius: 14px;
+  background: var(--green);
+  color: #fff;
+  border: 4px solid var(--ink);
+  border-radius: 6px;
   padding: 14px 16px;
 }
 .account-box__text {
@@ -514,35 +506,22 @@ body {
 .reveal-card__divider {
   text-align: center;
   margin: 20px 0 14px;
-  color: #8a7d6a;
-  position: relative;
+  color: #777;
 }
-.reveal-card__divider::before,
-.reveal-card__divider::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 22%;
-  border-top: 2px dotted var(--ink);
-  opacity: 0.5;
-}
-.reveal-card__divider::before { left: 6%; }
-.reveal-card__divider::after { right: 6%; }
 .name-done {
   text-align: center;
-  background: #f3ead4;
-  border: 2.5px solid var(--green);
-  border-radius: 12px;
+  background: var(--yellow);
+  border: 4px solid var(--ink);
+  border-radius: 6px;
   padding: 14px;
-  color: var(--green);
 }
 
 .form__error {
   margin-top: 10px;
-  background: #f6e7df;
-  border: 2px solid var(--pink);
-  color: var(--pink);
-  border-radius: 10px;
+  background: var(--red);
+  border: 3px solid var(--ink);
+  color: #fff;
+  border-radius: 4px;
   padding: 9px 12px;
   font-size: 0.98rem;
 }
@@ -550,14 +529,13 @@ body {
 /* ───────── 크레딧 롤 ───────── */
 .section--credits {
   background: var(--ink);
-  color: var(--paper);
+  color: #fff;
 }
 .section--credits .section__title {
   color: var(--yellow);
-  -webkit-text-stroke: 0;
 }
 .section--credits .muted {
-  color: #c9bba2;
+  color: #cfcfcf;
 }
 .credits {
   height: 280px;
@@ -585,32 +563,24 @@ body {
 }
 .credits__name {
   font-family: var(--hand);
-  font-size: 1.3rem;
-  color: var(--paper);
+  font-size: 1.35rem;
+  color: #fff;
 }
 .credits__msg {
   font-family: 'Gaegu', sans-serif;
   font-size: 0.95rem;
-  color: #c9bba2;
-}
-.credits--empty {
-  height: auto;
-  text-align: center;
-  color: #c9bba2;
-  font-family: 'Gaegu', sans-serif;
-  line-height: 1.9;
-  padding: 20px;
+  color: #cfcfcf;
 }
 
 /* ───────── 푸터 ───────── */
 .footer {
   text-align: center;
-  padding: 38px 22px 56px;
+  padding: 36px 22px 54px;
 }
 .footer__thanks {
   font-family: var(--hand);
-  font-size: 1.9rem;
-  color: var(--pink);
+  font-size: 2rem;
+  color: var(--red);
   margin-bottom: 10px;
 }
 .footer p {
@@ -622,7 +592,7 @@ body {
 .admin {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 40px 22px;
+  padding: 36px 22px;
 }
 .admin h1 {
   font-family: var(--hand);
@@ -641,18 +611,48 @@ body {
 .admin__field input {
   font-family: 'Gaegu', sans-serif;
   font-size: 1.05rem;
-  border: 2.5px solid var(--ink);
-  border-radius: 12px;
+  border: 3px solid var(--ink);
+  border-radius: 4px;
   padding: 11px 13px;
   background: #fff;
 }
 .admin__card {
-  background: rgba(255, 255, 255, 0.6);
-  border: 2.5px solid var(--ink);
-  border-radius: 16px;
+  background: #fff;
+  border: 4px solid var(--ink);
+  border-radius: 6px;
   padding: 18px;
   margin-bottom: 18px;
-  box-shadow: 3px 3px 0 var(--ink);
+}
+.admin__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+.admin__form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--hand);
+}
+.admin__form input[type='range'] {
+  accent-color: var(--red);
+}
+.admin__preview {
+  height: 22px;
+  border: 3px solid var(--ink);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+}
+.admin__bar {
+  height: 100%;
+  background: var(--red);
+  transition: width 0.2s;
+}
+.admin__msg {
+  font-family: var(--hand);
+  font-size: 1.1rem;
 }
 .admin__pending {
   list-style: none;
@@ -668,8 +668,8 @@ body {
   justify-content: space-between;
   gap: 10px;
   background: #fff;
-  border: 2px solid var(--ink);
-  border-radius: 12px;
+  border: 3px solid var(--ink);
+  border-radius: 4px;
   padding: 10px 12px;
 }
 .admin__pname {
@@ -678,7 +678,7 @@ body {
 }
 .admin__pmsg {
   font-size: 0.9rem;
-  color: #8a7d6a;
+  color: #777;
 }
 .admin__pbtns {
   display: flex;
@@ -689,45 +689,6 @@ body {
   padding: 7px 10px;
   font-size: 0.85rem;
 }
-.admin__form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin-top: 20px;
-}
-.admin__form label {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-family: var(--hand);
-}
-.admin__form input[type='password'] {
-  font-family: 'Gaegu', sans-serif;
-  font-size: 1.05rem;
-  border: 2.5px solid var(--ink);
-  border-radius: 12px;
-  padding: 11px 13px;
-  background: #fff;
-}
-.admin__form input[type='range'] {
-  accent-color: var(--pink);
-}
-.admin__preview {
-  height: 22px;
-  border: 2.5px solid var(--ink);
-  border-radius: 999px;
-  overflow: hidden;
-  background: #fff;
-}
-.admin__bar {
-  height: 100%;
-  background: var(--pink);
-  transition: width 0.2s;
-}
-.admin__msg {
-  font-family: var(--hand);
-  font-size: 1.1rem;
-}
 .admin__back {
   display: inline-block;
   margin-top: 22px;
@@ -737,13 +698,13 @@ body {
 /* ───────── 스크롤 등장 ───────── */
 .reveal {
   opacity: 0;
-  transform: translateY(26px) rotate(-0.4deg);
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
   will-change: opacity, transform;
 }
 .reveal--shown {
   opacity: 1;
-  transform: translateY(0) rotate(0);
+  transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
