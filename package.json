@@ -1,0 +1,28 @@
+{
+  "name": "my-birthday-funding",
+  "version": "1.0.0",
+  "description": "내 생일 선물 펀딩 프로젝트 - React 기반 모바일 펀딩 소개 페이지",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "pages:dev": "wrangler pages dev --proxy 5173 -- npm run dev",
+    "deploy": "npm run build && wrangler pages deploy dist"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241218.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "wrangler": "^3.95.0"
+  }
+}
