@@ -162,11 +162,7 @@ export default function App() {
       {/* ───── 게이지 (감사한 분 바로 위) ───── */}
       <section className="section">
         <Reveal>
-          <GaugeBar
-            goal={status.goal}
-            raised={status.raised}
-            percent={status.percent}
-          />
+          <GaugeBar percent={status.percent} />
         </Reveal>
       </section>
 
