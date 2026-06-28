@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { config } from '../config'
 import {
   fetchStatus,
   setProgress,
@@ -7,12 +8,13 @@ import {
   type PendingSupporter,
 } from '../api'
 
-// 관리자 화면 (#admin): 진행률 수동 갱신 + 후원자 승인
+// 관리자 화면 (#admin): 모은 금액 수동 갱신 + 후원자 승인
+// 목표 금액은 config.goalAmount 고정값을 사용합니다.
 export function Admin() {
   const [adminCode, setAdminCode] = useState('')
 
-  // 모금 현황 (목표/모은 금액)
-  const [goal, setGoal] = useState(0)
+  // 모금 현황 — 목표 금액은 config 고정, 모은 금액만 입력
+  const goal = config.goalAmount
   const [raised, setRaised] = useState(0)
   const [msg, setMsg] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
@@ -28,10 +30,7 @@ export function Admin() {
 
   useEffect(() => {
     fetchStatus()
-      .then((s) => {
-        setGoal(s.goal)
-        setRaised(s.raised)
-      })
+      .then((s) => setRaised(s.raised))
       .catch(() => {})
   }, [])
 
@@ -92,17 +91,10 @@ export function Admin() {
       <section className="admin__card">
         <h2>모금 현황</h2>
         <form className="admin__form" onSubmit={saveProgress}>
-          <label>
-            목표 금액 (원)
-            <input
-              type="number"
-              min={0}
-              step={1000}
-              value={goal}
-              onChange={(e) => setGoal(Math.max(0, Number(e.target.value)))}
-              placeholder="예: 300000"
-            />
-          </label>
+          <div className="admin__calc">
+            목표 금액 <strong>{goal.toLocaleString()}원</strong>
+            <span className="muted"> (config.goalAmount 에서 변경)</span>
+          </div>
           <label>
             모은 금액 (원)
             <input

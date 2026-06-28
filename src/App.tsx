@@ -162,7 +162,16 @@ export default function App() {
       {/* ───── 게이지 (감사한 분 바로 위) ───── */}
       <section className="section">
         <Reveal>
-          <GaugeBar percent={status.percent} />
+          <GaugeBar
+            percent={
+              config.goalAmount > 0
+                ? Math.max(
+                    0,
+                    Math.min(100, Math.round((status.raised / config.goalAmount) * 100)),
+                  )
+                : 0
+            }
+          />
         </Reveal>
       </section>
 

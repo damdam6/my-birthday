@@ -14,6 +14,10 @@ export const config = {
   // 인사 섹션 위에 들어갈 카톡 캡처 (public/ 안에 둠)
   chatImage: '/chat.jpg',
 
+  // 펀딩 목표 금액(원). 게이지 진행률 = 모은 금액 ÷ 이 값.
+  // (모은 금액은 어드민 #admin 에서 입력합니다)
+  goalAmount: 145000,
+
   // 펀딩으로 받고 싶은 선물
   gift: {
     title: '인체 공학용 키보드',
