@@ -21,12 +21,18 @@ function useHashRoute(): string {
 
 export default function App() {
   const hash = useHashRoute()
-  const [percent, setPercent] = useState(0)
+  const [status, setStatus] = useState({ goal: 0, raised: 0, percent: 0 })
   const [supporters, setSupporters] = useState<Supporter[]>([])
 
   const loadStatus = useCallback(() => {
     fetchStatus()
-      .then((s) => setPercent(Number.isFinite(s?.percent) ? s.percent : 0))
+      .then((s) =>
+        setStatus({
+          goal: Number.isFinite(s?.goal) ? s.goal : 0,
+          raised: Number.isFinite(s?.raised) ? s.raised : 0,
+          percent: Number.isFinite(s?.percent) ? s.percent : 0,
+        }),
+      )
       .catch(() => {})
   }, [])
   const loadSupporters = useCallback(() => {
@@ -156,7 +162,11 @@ export default function App() {
       {/* ───── 게이지 (감사한 분 바로 위) ───── */}
       <section className="section">
         <Reveal>
-          <GaugeBar percent={percent} />
+          <GaugeBar
+            goal={status.goal}
+            raised={status.raised}
+            percent={status.percent}
+          />
         </Reveal>
       </section>
 

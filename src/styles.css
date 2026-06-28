@@ -434,6 +434,22 @@ body {
 }
 
 /* ───────── 게이지 ───────── */
+.gauge__amounts {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-family: var(--hand);
+}
+.gauge__raised {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--red);
+}
+.gauge__goal {
+  font-size: 1.05rem;
+  color: #777;
+}
 .gauge__track {
   position: relative;
   height: 32px;
@@ -443,10 +459,21 @@ body {
   overflow: hidden;
 }
 .gauge__fill {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   height: 100%;
   background: var(--red);
   transition: width 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-  min-width: 18px;
+  min-width: 32px;
+}
+.gauge__pct {
+  font-family: var(--hand);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  padding-right: 8px;
+  white-space: nowrap;
 }
 .gauge__caption {
   text-align: center;
@@ -703,6 +730,22 @@ body {
 }
 .admin__form input[type='range'] {
   accent-color: var(--red);
+}
+.admin__form input[type='number'] {
+  font-family: var(--hand);
+  font-size: 1.1rem;
+  padding: 8px 10px;
+  border: 3px solid var(--ink);
+  border-radius: 4px;
+  background: #fff;
+}
+.admin__calc {
+  font-family: var(--hand);
+  font-size: 1.15rem;
+  text-align: center;
+}
+.admin__calc strong {
+  color: var(--red);
 }
 .admin__preview {
   height: 22px;

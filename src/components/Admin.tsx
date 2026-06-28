@@ -11,10 +11,15 @@ import {
 export function Admin() {
   const [adminCode, setAdminCode] = useState('')
 
-  // 진행률
-  const [percent, setPercent] = useState(0)
+  // 모금 현황 (목표/모은 금액)
+  const [goal, setGoal] = useState(0)
+  const [raised, setRaised] = useState(0)
   const [msg, setMsg] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
+
+  // 진행률 미리보기 (모은 금액 ÷ 목표 금액)
+  const percent =
+    goal > 0 ? Math.max(0, Math.min(100, Math.round((raised / goal) * 100))) : 0
 
   // 후원자 승인
   const [pending, setPending] = useState<PendingSupporter[]>([])
@@ -23,7 +28,10 @@ export function Admin() {
 
   useEffect(() => {
     fetchStatus()
-      .then((s) => setPercent(s.percent))
+      .then((s) => {
+        setGoal(s.goal)
+        setRaised(s.raised)
+      })
       .catch(() => {})
   }, [])
 
@@ -32,8 +40,10 @@ export function Admin() {
     setMsg(null)
     setSaving(true)
     try {
-      const res = await setProgress(adminCode.trim(), percent)
-      setMsg(`✅ 저장됨: ${res.percent}%`)
+      const res = await setProgress(adminCode.trim(), goal, raised)
+      setMsg(
+        `✅ 저장됨: ${res.raised.toLocaleString()}원 / ${res.goal.toLocaleString()}원 (${res.percent}%)`,
+      )
     } catch (err) {
       setMsg(`❌ ${err instanceof Error ? err.message : '오류'}`)
     } finally {
@@ -78,25 +88,41 @@ export function Admin() {
         />
       </label>
 
-      {/* 진행률 */}
+      {/* 모금 현황 (목표/모은 금액) */}
       <section className="admin__card">
-        <h2>모금 진행률</h2>
+        <h2>모금 현황</h2>
         <form className="admin__form" onSubmit={saveProgress}>
           <label>
-            진행률: <strong>{percent}%</strong>
+            목표 금액 (원)
             <input
-              type="range"
+              type="number"
               min={0}
-              max={100}
-              value={percent}
-              onChange={(e) => setPercent(Number(e.target.value))}
+              step={1000}
+              value={goal}
+              onChange={(e) => setGoal(Math.max(0, Number(e.target.value)))}
+              placeholder="예: 300000"
             />
           </label>
+          <label>
+            모은 금액 (원)
+            <input
+              type="number"
+              min={0}
+              step={1000}
+              value={raised}
+              onChange={(e) => setRaised(Math.max(0, Number(e.target.value)))}
+              placeholder="예: 120000"
+            />
+          </label>
+          <div className="admin__calc">
+            {raised.toLocaleString()}원 / {goal.toLocaleString()}원 →{' '}
+            <strong>{percent}%</strong>
+          </div>
           <div className="admin__preview">
             <div className="admin__bar" style={{ width: `${percent}%` }} />
           </div>
           <button className="btn btn--dark" type="submit" disabled={saving}>
-            {saving ? '저장 중…' : '진행률 저장'}
+            {saving ? '저장 중…' : '현황 저장'}
           </button>
           {msg && <div className="admin__msg">{msg}</div>}
         </form>

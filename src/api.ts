@@ -14,8 +14,13 @@ async function parse<T>(res: Response): Promise<T> {
   return data as T
 }
 
-// 모금 진행률 (관리자가 수동으로 갱신한 값, 수치는 비공개 → percent만)
-export async function fetchStatus(): Promise<{ percent: number }> {
+// 모금 현황 (관리자가 수동으로 갱신) — 목표/모은 금액(원)과 진행률(%)
+export interface Status {
+  goal: number
+  raised: number
+  percent: number
+}
+export async function fetchStatus(): Promise<Status> {
   return parse(await fetch('/api/status'))
 }
 
@@ -89,16 +94,17 @@ export async function adminModerateSupporter(
   )
 }
 
-// (관리자) 진행률 수동 갱신
+// (관리자) 모금 현황 수동 갱신 — 목표/모은 금액(원). 진행률은 서버가 계산해 반환.
 export async function setProgress(
   adminCode: string,
-  percent: number,
-): Promise<{ ok: true; percent: number }> {
+  goal: number,
+  raised: number,
+): Promise<{ ok: true; goal: number; raised: number; percent: number }> {
   return parse(
     await fetch('/api/admin/progress', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ adminCode, percent }),
+      body: JSON.stringify({ adminCode, goal, raised }),
     }),
   )
 }
