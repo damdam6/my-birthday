@@ -23,14 +23,13 @@ export function CreditsRoll({ supporters = [] }: CreditsRollProps) {
     return <div className="credits credits--static">{supporters.map(item)}</div>
   }
 
-  // 많을 때: 끊김 없이 반복되도록 목록을 두 번 이어 붙여 스크롤
+  // 많을 때: 목록을 두 번 이어 붙이고 -50% 로 굴려 끊김 없이 반복.
+  // (간격은 gap 대신 각 항목의 margin-bottom 으로 줘서 경계 점프를 없앰)
   const loop = [...supporters, ...supporters]
+  const duration = Math.max(16, supporters.length * 3)
   return (
     <div className="credits">
-      <div
-        className="credits__roll"
-        style={{ animationDuration: `${Math.max(12, supporters.length * 2)}s` }}
-      >
+      <div className="credits__roll" style={{ animationDuration: `${duration}s` }}>
         {loop.map(item)}
       </div>
     </div>

@@ -621,21 +621,23 @@ body {
   -webkit-mask-image: none;
   mask-image: none;
 }
+/* 세로 롤 (끊김 없는 무한 스크롤) */
 .credits__roll {
-  position: absolute;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  animation: roll linear infinite;
+  animation: credits-roll linear infinite;
 }
-@keyframes roll {
+@keyframes credits-roll {
   from { transform: translateY(0); }
   to { transform: translateY(-50%); }
 }
 .credits__item {
   text-align: center;
+}
+/* 롤일 때만: 간격을 margin 으로 줘서 -50% 경계가 매끄럽게 이어지도록 */
+.credits__roll .credits__item {
+  margin-bottom: 22px;
 }
 .credits__name {
   font-family: var(--hand);
@@ -801,5 +803,6 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .cover__scroll, .credits__roll { animation: none; }
+  .cover__scroll { animation: none; }
+  .credits__roll { animation: none; }
 }
