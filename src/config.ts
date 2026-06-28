@@ -8,9 +8,6 @@ export const config = {
   // 생일 주인공 이름  ← 본인 이름으로 바꾸세요 (푸터에 "{name}씨의 생일 펀딩")
   name: 'damdam',
 
-  // 생일 (YYYY-MM-DD)  ← D-day 계산에 사용
-  birthday: '2026-07-15',
-
   // 인사 섹션 위에 들어갈 카톡 캡처 (public/ 안에 둠)
   chatImage: '/chat.jpg',
 
