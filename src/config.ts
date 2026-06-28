@@ -75,7 +75,7 @@ export const copy = {
   rewardTitle: '후원자 혜택',
   rewardSubtitle: '금액은 신경 안씁니다. 그저 감사한 마음뿐.',
 
-  accountTitle: '감사한 분',
+  accountTitle: '후원하기',
   accountLead: '후원도 권한 있어야 합니다. 모두 공개 아니에요. 양심 있어요 저.',
   accountHint: '(모르시면 물어봐주세요... 물론 안 알려드릴 수도 있음)',
   accountRevealTitle: '개발자 후원 계좌',

@@ -112,7 +112,9 @@ export function AccountReveal({ onSupporterAdded }: AccountRevealProps) {
         </button>
       </div>
 
-      <div className="reveal-card__divider">송금 완료하셨나요?</div>
+      <div className="reveal-card__divider">
+        이체 안해도 됨 / 카카오로 보내주셔도 됨. 다 ok임
+      </div>
 
       {nameDone ? (
         <div className="name-done">
