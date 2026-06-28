@@ -105,13 +105,6 @@ export default function App() {
             <span className="burst burst--br">{copy.burstBR}</span>
             <GiftPhotos images={config.gift.images} alt={config.gift.title} />
           </div>
-        </Reveal>
-        <Reveal>
-          <p className="section__text reason">{config.gift.reason}</p>
-          <PersonSpeech
-            label={config.gift.doctor.label}
-            line={config.gift.doctor.line}
-          />
           {config.gift.link && (
             <a
               className="btn btn--ghost gift-link"
@@ -122,6 +115,13 @@ export default function App() {
               어떤 제품인지 구경하기
             </a>
           )}
+        </Reveal>
+        <Reveal>
+          <p className="section__text reason">{config.gift.reason}</p>
+          <PersonSpeech
+            label={config.gift.doctor.label}
+            line={config.gift.doctor.line}
+          />
           <p className="handwrite pledge-line">{copy.storyLine}</p>
         </Reveal>
       </section>

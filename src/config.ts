@@ -58,7 +58,7 @@ export const copy = {
 
   introLine: '마침 판교에서 썩어가는 개발자에게 필요한 썸띵은',
   burstTL: '#인체공학',
-  burstBR: '#약하디약한손목',
+  burstBR: '#팜레스트필수',
   storyLine:
     '버티컬... 모니터 받침... 개발자는 인체공학 붙은 걸 써야 한다는 걸 다시 한 번 깨달은 나.',
 
