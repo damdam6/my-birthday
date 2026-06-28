@@ -326,6 +326,28 @@ body {
   transform: rotate(7deg);
 }
 
+/* ───────── 사건의 발단 (카톡 캡처) ───────── */
+.chat-cap {
+  text-align: center;
+  font-size: 1.25rem;
+  margin: 0 0 12px;
+  color: var(--red);
+}
+.chat-shot {
+  margin: 0 auto;
+  max-width: 320px;
+  border: 4px solid var(--ink);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  transform: rotate(-1.2deg);
+  filter: url(#wobble);
+}
+.chat-shot img {
+  width: 100%;
+  display: block;
+}
+
 /* ───────── 사람 + 말풍선 ───────── */
 .person-speech {
   display: flex;

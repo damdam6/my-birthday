@@ -62,6 +62,16 @@ export default function App() {
         <div className="cover__scroll">{copy.coverScroll}</div>
       </section>
 
+      {/* ───── 사건의 발단 (카톡) ───── */}
+      <section className="section">
+        <Reveal>
+          <p className="handwrite chat-cap">사건의 발단 ↓</p>
+          <figure className="chat-shot">
+            <img src={config.chatImage} alt="친구의 펀딩 제안 카톡 캡처" />
+          </figure>
+        </Reveal>
+      </section>
+
       {/* ───── 인사 ───── */}
       <section className="section">
         <Reveal>
@@ -126,13 +136,6 @@ export default function App() {
         </Reveal>
       </section>
 
-      {/* ───── 게이지 ───── */}
-      <section className="section">
-        <Reveal>
-          <GaugeBar percent={percent} />
-        </Reveal>
-      </section>
-
       {/* ───── 리워드 ───── */}
       <section className="section section--paper">
         <Reveal>
@@ -147,6 +150,13 @@ export default function App() {
             ))}
           </ul>
           <p className="reward-note">* {config.rewardNote} *</p>
+        </Reveal>
+      </section>
+
+      {/* ───── 게이지 (감사한 분 바로 위) ───── */}
+      <section className="section">
+        <Reveal>
+          <GaugeBar percent={percent} />
         </Reveal>
       </section>
 

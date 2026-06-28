@@ -11,6 +11,9 @@ export const config = {
   // 생일 (YYYY-MM-DD)  ← D-day 계산에 사용
   birthday: '2026-07-15',
 
+  // 인사 섹션 위에 들어갈 카톡 캡처 (public/ 안에 둠)
+  chatImage: '/chat.jpg',
+
   // 펀딩으로 받고 싶은 선물
   gift: {
     title: '인체 공학용 키보드',
