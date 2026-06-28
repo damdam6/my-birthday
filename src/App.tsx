@@ -183,20 +183,18 @@ export default function App() {
         </Reveal>
       </section>
 
-      {/* ───── 크레딧 롤 ───── */}
-      <section className="section section--credits">
-        <Reveal>
-          <h2 className="section__title">{copy.creditsTitle}</h2>
-          <p className="section__text muted">{copy.creditsSubtitle}</p>
-        </Reveal>
-        <CreditsRoll supporters={supporters} />
-      </section>
+      {/* ───── 크레딧 롤 (후원자 있을 때만) ───── */}
+      {supporters.length > 0 && (
+        <section className="section section--credits">
+          <CreditsRoll supporters={supporters} />
+        </section>
+      )}
 
       {/* ───── 푸터 ───── */}
       <footer className="footer">
         <div className="footer__thanks">{copy.footerThanks}</div>
         <p className="muted">
-          {config.name}의 생일 펀딩 · React · Cloudflare · Neon
+          {config.name}씨의 생일 펀딩 · React · Cloudflare · Neon
         </p>
       </footer>
     </main>

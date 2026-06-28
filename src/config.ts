@@ -5,8 +5,8 @@
 // └─────────────────────────────────────────────────────────┘
 
 export const config = {
-  // 생일 주인공 이름  ← 본인 이름으로 바꾸세요
-  name: '○○○',
+  // 생일 주인공 이름  ← 본인 이름으로 바꾸세요 (푸터에 "{name}씨의 생일 펀딩")
+  name: 'damdam',
 
   // 생일 (YYYY-MM-DD)  ← D-day 계산에 사용
   birthday: '2026-07-15',
@@ -80,9 +80,6 @@ export const copy = {
   accountHint: '(모르시면 물어봐주세요... 물론 안 알려드릴 수도 있음)',
   accountRevealTitle: '개발자 후원 계좌',
   accountCopyBtn: '복사',
-
-  creditsTitle: '<후원자>',
-  creditsSubtitle: '다들 감사합니다....',
 
   footerThanks: '감사합니다',
 }

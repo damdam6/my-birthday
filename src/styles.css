@@ -611,6 +611,16 @@ body {
   -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
   mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
 }
+/* 후원자가 적을 때: 스크롤 없이 내용 높이에 맞춤 */
+.credits--static {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
 .credits__roll {
   position: absolute;
   width: 100%;
