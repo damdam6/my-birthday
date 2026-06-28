@@ -59,7 +59,7 @@ export const copy = {
   option2: '오 그래그래. 함 말해봐라',
   option2Reply: '계속 읽어보시죠',
 
-  introLine: '마침 판교에서 썩어가는 개발자에게 필요한 썸띵은',
+  introLine: '판교에서 썩어가는 개발자의 선택은',
   burstTL: '#인체공학',
   burstBR: '#팜레스트필수',
   storyLine:
