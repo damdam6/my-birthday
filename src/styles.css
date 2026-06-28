@@ -604,40 +604,32 @@ body {
   color: #cfcfcf;
 }
 .credits {
-  height: 280px;
+  --box-h: 320px;
+  height: var(--box-h);
   overflow: hidden;
   position: relative;
   margin-top: 18px;
-  -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
-  mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+  -webkit-mask-image: linear-gradient(transparent, #000 14%, #000 86%, transparent);
+  mask-image: linear-gradient(transparent, #000 14%, #000 86%, transparent);
 }
-/* 후원자가 적을 때: 스크롤 없이 내용 높이에 맞춤 */
-.credits--static {
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  -webkit-mask-image: none;
-  mask-image: none;
-}
-/* 세로 롤 (끊김 없는 무한 스크롤) */
+/* 세로 롤: 아래(박스 밑)에서 시작해 위로 완전히 사라질 때까지 → 다시 아래에서 */
 .credits__roll {
+  position: absolute;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 22px;
   animation: credits-roll linear infinite;
+  will-change: transform;
 }
 @keyframes credits-roll {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50%); }
+  from { transform: translateY(var(--box-h)); }
+  to { transform: translateY(-100%); }
 }
 .credits__item {
   text-align: center;
-}
-/* 롤일 때만: 간격을 margin 으로 줘서 -50% 경계가 매끄럽게 이어지도록 */
-.credits__roll .credits__item {
-  margin-bottom: 22px;
 }
 .credits__name {
   font-family: var(--hand);
@@ -804,5 +796,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   .cover__scroll { animation: none; }
-  .credits__roll { animation: none; }
+  .credits { height: auto; }
+  .credits__roll { animation: none; position: static; transform: none; }
 }

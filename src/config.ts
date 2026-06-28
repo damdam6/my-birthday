@@ -78,5 +78,7 @@ export const copy = {
   accountRevealTitle: '개발자 후원 계좌',
   accountCopyBtn: '복사',
 
+  creditsTitle: '<후원자>',
+
   footerThanks: '감사합니다',
 }
